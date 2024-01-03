@@ -14,8 +14,8 @@ def main():
         transforms.Normalize((0.5,), (0.5,))
     ])
 
-    train_dataset = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
-    test_dataset = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
+    train_dataset = torchvision.datasets.MNIST(root='./hessian/dataa', train=True, download=True, transform=transform)
+    test_dataset = torchvision.datasets.MNIST(root='./hessian/dataa', train=False, download=True, transform=transform)
 
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=64, shuffle=True)
     test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=64, shuffle=False)
@@ -63,6 +63,7 @@ def main():
             grad = torch.cat([param.grad.view(-1) for param in model.parameters()])
             hessian = torch.autograd.functional.hessian(lambda x: criterion(model(x), labels).sum(), inputs=images)
             eigenvalues, eigenvectors = torch.linalg.eigh(hessian[0])
+            print(eigenvalues.shap)
             top_k_eigenvalues, indices = torch.topk(eigenvalues, k=10, largest=True)
             top_k_eigenvectors = eigenvectors[:, indices]
             g_bulk = torch.mm(top_k_eigenvectors, torch.mm(top_k_eigenvectors.t(), grad.unsqueeze(1))).squeeze()
