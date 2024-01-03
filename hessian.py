@@ -63,6 +63,7 @@ def main():
             # Calculate ft
             grad = torch.cat([param.grad.view(-1) for param in model.parameters()])
             hessian = torch.autograd.functional.hessian(lambda x: criterion(model(x), labels).sum(), inputs=images)
+            print(hessian.shape)
             eigenvalues, eigenvectors = torch.linalg.eigh(hessian[0])
             print(eigenvalues.shape)
             top_k_eigenvalues, indices = torch.topk(eigenvalues, k=10, largest=True)
