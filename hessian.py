@@ -2,6 +2,7 @@ import torch
 import torchvision
 import torch.nn as nn
 import torch.optim as optim
+import torch.backends.cudnn as cudnn
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 from tqdm.auto import tqdm
@@ -14,8 +15,8 @@ def main():
         transforms.Normalize((0.5,), (0.5,))
     ])
 
-    train_dataset = torchvision.datasets.MNIST(root='./hessian/dataa', train=True, download=True, transform=transform)
-    test_dataset = torchvision.datasets.MNIST(root='./hessian/dataa', train=False, download=True, transform=transform)
+    train_dataset = torchvision.datasets.MNIST(root='./hessian/dataa', train=True, download=False, transform=transform)
+    test_dataset = torchvision.datasets.MNIST(root='./hessian/dataa', train=False, download=False, transform=transform)
 
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=64, shuffle=True)
     test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=64, shuffle=False)
