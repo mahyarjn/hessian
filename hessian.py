@@ -64,7 +64,7 @@ def main():
             grad = torch.cat([param.grad.view(-1) for param in model.parameters()])
             hessian = torch.autograd.functional.hessian(lambda x: criterion(model(x), labels).sum(), inputs=images)
             eigenvalues, eigenvectors = torch.linalg.eigh(hessian[0])
-            print(eigenvalues.shap)
+            print(eigenvalues.shape)
             top_k_eigenvalues, indices = torch.topk(eigenvalues, k=10, largest=True)
             top_k_eigenvectors = eigenvectors[:, indices]
             g_bulk = torch.mm(top_k_eigenvectors, torch.mm(top_k_eigenvectors.t(), grad.unsqueeze(1))).squeeze()
