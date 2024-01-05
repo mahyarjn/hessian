@@ -50,9 +50,9 @@ def main():
     optimizer = optim.Adam(model.parameters(), lr=0.01)
     model = model.cuda()
 
-    for i, (imagesall, labelsall) in enumerate(train_loader2):
-    break
-    imagesall, labelsall  = imagesall.cuda(), labelsall.cuda()
+    # for i, (imagesall, labelsall) in enumerate(train_loader2):
+    #     break
+    # imagesall, labelsall  = imagesall.cuda(), labelsall.cuda()
 
     # Training loop
     num_epochs = 30
@@ -97,12 +97,12 @@ def main():
             projection_norm = 0
             norm_gradient=0
             for j in range(top_number):
-            projection_norm_temp=0
-            for a,b in zip(grad, top_eigenvector[j]):
-                projection_norm_temp += torch.sum((a*b))
-            projection_norm += projection_norm_temp**2
+                projection_norm_temp=0
+                for a,b in zip(grad, top_eigenvector[j]):
+                    projection_norm_temp += torch.sum((a*b))
+                projection_norm += projection_norm_temp**2
             for c in grad:
-            norm_gradient += torch.sum((c*c))
+                norm_gradient += torch.sum((c*c))
             mean += projection_norm/norm_gradient   
             model.train()
 
