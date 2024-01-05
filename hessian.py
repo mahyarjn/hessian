@@ -3,6 +3,7 @@ import torchvision
 import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
+import torch.backends.cudnn as cudnn
 import matplotlib.pyplot as plt
 from tqdm.auto import tqdm
 from pyhessian import hessian
