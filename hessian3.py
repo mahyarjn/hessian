@@ -157,7 +157,7 @@ def main():
     ax[1].set_ylabel('f_t')
     ax[1].legend()
 
-    fig.savefig('./hessian.png', dpi=300)
+    fig.savefig('./hessian3.png', dpi=300)
 
 
 if __name__ == '__main__':
