@@ -43,12 +43,12 @@ def main():
 
     # Initialize the model, criterion, optimizer
     input_size = 28 * 28
-    hidden_size = 100
+    hidden_size = 128
     output_size = 10
 
     model = TwoLayerNet(input_size, hidden_size, output_size)
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.01)
+    optimizer = optim.Adam(model.parameters(), lr=0.02)
     model = model.cuda()
 
     # for i, (imagesall, labelsall) in enumerate(train_loader2):
@@ -56,7 +56,7 @@ def main():
     # imagesall, labelsall  = imagesall.cuda(), labelsall.cuda()
 
     # Training loop
-    num_epochs = 30
+    num_epochs = 300
     train_losses = []
     test_losses = []
     ft_values = []
