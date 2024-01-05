@@ -5,7 +5,6 @@ import torch.optim as optim
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 from tqdm.auto import tqdm
-!pip install pyhessian
 from pyhessian import hessian
 import os
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
