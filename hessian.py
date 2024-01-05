@@ -140,7 +140,7 @@ def main():
 
         # accuracy = 100 * correct / total
         print(f"Epoch [{epoch + 1}/{num_epochs}], "
-              f"Train Loss: {train_loss:.4f}, Test Loss: {test_loss:.4f}, ")
+              f"Train Loss: {train_loss:.4f}")
         print(bulk[-1])
 
     bulkk = [f.cpu() for f in bulk]
